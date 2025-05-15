@@ -1,5 +1,12 @@
 # this is a git ignore for the fsvav project.
 
+# the following lines are copied from the vgarcade project, to ignore vivado files
+fsvav/fsvav.cache/*
+fsvav/fsvav.ip_user_files/*
+fsvav/fsvav.hw/*
+fsvav/fsvav.runs/*
+# fsvav/fsvav.xpr
+fsvav/*.txt
 
 
 
