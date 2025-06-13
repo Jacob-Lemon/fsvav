@@ -8,7 +8,8 @@ fsvav/fsvav.runs/*
 # fsvav/fsvav.xpr
 fsvav/*.txt
 
-
+# ignore simulation files
+fsvav/fsvav.sim/*
 
 
 
