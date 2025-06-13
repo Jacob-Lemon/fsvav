@@ -2,6 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+----------
+
 entity mux is
     port (
         -- d0, d1, sel    : in bit;
