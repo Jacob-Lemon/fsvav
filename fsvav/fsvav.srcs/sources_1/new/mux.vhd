@@ -34,16 +34,22 @@ use ieee.numeric_std.all;
 
 entity mux is
     port (
-        d0    : in bit;
-        d1    : in bit;
-        sel   : in bit;
-        out : out bit
+        -- d0, d1, sel    : in bit;
+        d0   : in bit;
+        d1   : in bit;
+        sel  : in bit;
+        mout : out bit;
     );
 end mux;
 
 architecture Behavioral of mux is
-
 begin
+   --  mout <= d1 when (sel = '1') else d0;
+    process (d0, d1, sel) is
+    begin
+        mout <= (not sel and d0) or (sel and d1); -- mux logic
+    end process;
+
 
 
 end Behavioral;
