@@ -19,8 +19,9 @@
 ----------------------------------------------------------------------------------
 
 
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,7 +33,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity mux is
---  Port ( );
+    port (
+        d0    : in bit;
+        d1    : in bit;
+        sel   : in bit;
+        out : out bit
+    );
 end mux;
 
 architecture Behavioral of mux is
