@@ -13,18 +13,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity top is
     port (
         -- inputs
-        clk   : in std_logic;
+        clk_100MHz : in std_logic;
         right : in std_logic_vector (3 downto 0);
         left  : in std_logic_vector (3 downto 0);
         -- outputs
         an : out std_logic_vector (1 downto 0); -- controls which sections of 7 segment displays are on
-        a : out std_logic;
-        b : out std_logic;
-        c : out std_logic;
-        d : out std_logic;
-        e : out std_logic;
-        f : out std_logic;
-        g : out std_logic;
+        segments : out std_logic_vector (6 downto 0);
     );
 end top;
 
@@ -32,7 +26,6 @@ architecture Behavioral of top is
 -- this is where signals and components go
 -- signals
 signal clk_2kHz : std_logic := '0';
-
 
 -- components
 component clk_divider 
@@ -42,10 +35,37 @@ component clk_divider
     );
 end component;
 
+component seven_segment
+    port (
+        d : in std_logic_vector (3 downto 0);
+        segments : out std_logic_vector (6 downto 0);
+    );
+
 begin -- begin architecture
 
 -- clock divider instantiation
 get_clk_2kHz : clock_divider
-    port map
+    port map (
+        clk_100MHz => clk_100MHz;
+        clk_2kHz => clk_2kHz;
+    );
+
+-- seven segment instantiation
+seven_segment_instance_1 : seven_segment
+    port map (
+        right => d;
+        segments => segments;
+    );
+
+-- main process 
+
+main_process : process (clk_100MHz)
+
+begin 
+
+
+
+end process main_process;
+
 
 end Behavioral;
