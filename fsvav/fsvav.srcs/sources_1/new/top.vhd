@@ -18,7 +18,7 @@ entity top is
         left  : in std_logic_vector (3 downto 0);
         -- outputs
         an : out std_logic_vector (1 downto 0); -- controls which sections of 7 segment displays are on
-        segments : out std_logic_vector (6 downto 0);
+        segments : out std_logic_vector (6 downto 0)
     );
 end top;
 
@@ -28,44 +28,46 @@ architecture Behavioral of top is
 signal clk_2kHz : std_logic := '0';
 
 -- components
-component clk_divider 
-    port (
-        clk_100MHz : in std_logic;
-        clk_2kHz   : out std_logic;
-    );
-end component;
+--component clk_divider 
+--    port (
+--        clk_100MHz : in std_logic;
+--        clk_2kHz   : out std_logic
+--    );
+--end component;
 
 component seven_segment
     port (
         d : in std_logic_vector (3 downto 0);
-        segments : out std_logic_vector (6 downto 0);
+        segments : out std_logic_vector (6 downto 0)
     );
+end component;
 
 begin -- begin architecture
 
 -- clock divider instantiation
-get_clk_2kHz : clock_divider
-    port map (
-        clk_100MHz => clk_100MHz;
-        clk_2kHz => clk_2kHz;
-    );
+--get_clk_2kHz : clock_divider
+--    port map (
+--        clk_100MHz => clk_100MHz,
+--        clk_2kHz => clk_2kHz
+--    );
 
 -- seven segment instantiation
 seven_segment_instance_1 : seven_segment
     port map (
-        right => d;
-        segments => segments;
+        d => right,
+        segments => segments
     );
 
 -- main process 
 
-main_process : process (clk_100MHz)
+-- main_process : process (clk_100MHz)
 
-begin 
+-- begin 
 
 
+-- end process;
 
-end process main_process;
-
+an(0) = '0';
+an(1) = '1';
 
 end Behavioral;

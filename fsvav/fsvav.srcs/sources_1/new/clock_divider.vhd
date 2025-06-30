@@ -15,7 +15,7 @@ entity clock_divider is
         -- inputs
         clk_100MHz : in std_logic;
         -- outputs
-        clk_2khz : out std_logic;
+        clk_2khz : out std_logic
     );
 end clock_divider;
 
@@ -29,14 +29,16 @@ begin
 
 -- main clock divider process
 process (clk_100MHz)
-begin
-    if (rising_edge(clk_100MHz)) then
-        count <= count + 1;
-    elsif ( count == 25_000) then -- 50_000 or 25_000 are probably the right constants
-        temp <= not temp;
-    end if;
-    clk_2khz <= temp;
-end process;
-
+    begin
+        if rising_edge(clk_100MHz) then
+            if count = 25_000 then  -- adjust to 25_000 for 2 kHz from 100 MHz
+                temp <= not temp;
+                count <= 1;
+            else
+                count <= count + 1;
+            end if;
+        end if;
+        clk_2khz <= temp;
+    end process;
 
 end Behavioral;

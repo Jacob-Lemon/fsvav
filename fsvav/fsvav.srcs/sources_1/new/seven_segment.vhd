@@ -7,7 +7,7 @@ entity seven_segment is
         -- inputs
         d : in std_logic_vector (3 downto 0);
         -- outputs
-        segments : out std_logic_vector (6 downto 0);
+        segments : out std_logic_vector (6 downto 0)
     );
 end seven_segment;
 
