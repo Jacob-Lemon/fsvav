@@ -29,8 +29,23 @@ entity top is
 end top;
 
 architecture Behavioral of top is
+-- this is where signals and components go
+-- signals
+signal clk_2kHz : std_logic := '0';
 
-begin
 
+-- components
+component clk_divider 
+    port (
+        clk_100MHz : in std_logic;
+        clk_2kHz   : out std_logic;
+    );
+end component;
+
+begin -- begin architecture
+
+-- clock divider instantiation
+get_clk_2kHz : clock_divider
+    port map
 
 end Behavioral;
