@@ -67,7 +67,7 @@ seven_segment_instance_1 : seven_segment
 
 -- end process;
 
-an(0) = '0';
-an(1) = '1';
+an(0) <= '0';
+an(1) <= '1';
 
 end Behavioral;
