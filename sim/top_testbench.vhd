@@ -1,5 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 entity top_testbench is
     -- empty for testbench
@@ -7,8 +8,8 @@ end top_testbench;
 
 architecture Behavioral of top_testbench is
     -- DUT signals
-    -- inputs
-    signal clk_100MHz : std_logic;
+    -- inputs   
+    signal clk_100MHz : std_logic := '0';
     signal right : std_logic_vector (3 downto 0);
     signal left  : std_logic_vector (3 downto 0);
     -- outputs
@@ -41,18 +42,17 @@ begin
     
     -- stimulus 
     stim_proc: process
+        variable i : integer := 0;
     begin
-    an <= "0111";
-    right <= "0000";
-    wait for 10 ns;
-    
-    right <= "0001";
-    wait for 10 ns;
-    
-    
-    
+    clk_100MHz <= '0';
+
+
+    for i in 0 to 15 loop
+        right <= std_logic_vector(to_unsigned(i,4));
+        clk_100MHz <= not clk_100MHz;
+        wait for 10 ns; 
+    end loop;
     wait;
-    -- std.env.finish;
     
     end process;
 
