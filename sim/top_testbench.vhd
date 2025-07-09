@@ -8,6 +8,7 @@ end top_testbench;
 architecture Behavioral of top_testbench is
     -- DUT signals
     -- inputs
+    signal clk_100MHz : std_logic;
     signal right : std_logic_vector (3 downto 0);
     signal left  : std_logic_vector (3 downto 0);
     -- outputs
@@ -41,15 +42,17 @@ begin
     -- stimulus 
     stim_proc: process
     begin
-    an <= 0;
-    right <= 0;
+    an <= "0111";
+    right <= "0000";
     wait for 10 ns;
     
-    right <= 1;
+    right <= "0001";
     wait for 10 ns;
     
     
-    std.env.finish;
+    
+    wait;
+    -- std.env.finish;
     
     end process;
 
