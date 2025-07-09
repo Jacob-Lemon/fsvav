@@ -18,25 +18,25 @@ begin
     begin
         case d is
             when "0000" => -- 0
-                segments <= "1111110";
+                segments <= "1111110" xor "1111111";
             when "0001" => -- 1
-                segments <= "0110000";
+                segments <= "0110000" xor "1111111";
             when "0010" => -- 2
-                segments <= "1101101";
+                segments <= "1101101" xor "1111111";
             when "0011" => -- 3
-                segments <= "1111001";
+                segments <= "1111001" xor "1111111";
             when "0100" => -- 4
-                segments <= "0110011";
+                segments <= "0110011" xor "1111111";
             when "0101" => -- 5
-                segments <= "1011011";
+                segments <= "1011011" xor "1111111";
             when "0110" => -- 6
-                segments <= "1011111";
+                segments <= "1011111" xor "1111111";
             when "0111" => -- 7
-                segments <= "1110000";
+                segments <= "1110000" xor "1111111";
             when "1000" => -- 8
-                segments <= "1111111";
+                segments <= "1111111" xor "1111111";
             when "1001" => -- 9
-                segments <= "1110011";
+                segments <= "1110011" xor "1111111";
             when others =>
                 segments <= "1111110"; -- display 0 if invalid
         end case;
