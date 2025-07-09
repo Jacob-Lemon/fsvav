@@ -12,34 +12,52 @@ entity seven_segment is
 end seven_segment;
 
 architecture Behavioral of seven_segment is
+
+    signal temp_segments : std_logic_vector(6 downto 0);
+
 begin
 
     process(d) is
     begin
         case d is
             when "0000" => -- 0
-                segments <= "1111110" xor "1111111";
+                temp_segments <= "1111110";
             when "0001" => -- 1
-                segments <= "0110000" xor "1111111";
+                temp_segments <= "0110000";
             when "0010" => -- 2
-                segments <= "1101101" xor "1111111";
+                temp_segments <= "1101101";
             when "0011" => -- 3
-                segments <= "1111001" xor "1111111";
+                temp_segments <= "1111001";
             when "0100" => -- 4
-                segments <= "0110011" xor "1111111";
+                temp_segments <= "0110011";
             when "0101" => -- 5
-                segments <= "1011011" xor "1111111";
+                temp_segments <= "1011011";
             when "0110" => -- 6
-                segments <= "1011111" xor "1111111";
+                temp_segments <= "1011111";
             when "0111" => -- 7
-                segments <= "1110000" xor "1111111";
+                temp_segments <= "1110000";
             when "1000" => -- 8
-                segments <= "1111111" xor "1111111";
+                temp_segments <= "1111111";
             when "1001" => -- 9
-                segments <= "1110011" xor "1111111";
+                temp_segments <= "1110011";
+            when "1010" => -- A
+                temp_segments <= "1110111";
+            when "1011" => -- b
+                temp_segments <= "0011111";
+            when "1100" => -- C
+                temp_segments <= "1001110";
+            when "1101" => -- d
+                temp_segments <= "0111101";
+            when "1110" => -- E
+                temp_segments <= "1001111";
+            when "1111" => -- F
+                temp_segments <= "1000111";
             when others =>
-                segments <= "1111110"; -- display 0 if invalid
+                temp_segments <= "1111110"; -- display 0 if invalid
         end case;
     end process;
+
+
+    segments <= not temp_segments;
 
 end Behavioral;
