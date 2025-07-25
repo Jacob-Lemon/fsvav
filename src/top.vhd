@@ -1,7 +1,5 @@
 -- this is top.vhd
 
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -31,16 +29,22 @@ signal w_y : std_logic;
 
 
 -- components
-component vga_controller
-    port (
-        -- port list of vga_controller
-    );
-end component;
+--component vga_controller
+--    port (
+--        -- port list of vga controller
+--    );
+--end component;
 
 component pixel_generation
     port (
-        -- port list of pixel_generation
-    );
+        -- inputs
+        clk : in std_logic;
+        reset : in std_logic;
+        video_on : in std_logic;
+        x, y : in std_logic_vector (9 downto 0);
+        -- outputs
+        rgb : out std_logic_vector (11 downto 0)
+        );
 end component;
 
 
@@ -54,15 +58,24 @@ begin -- begin architecture
 --      vga_controller
 -- then just match the signals
 
+-- instantiation of pixel_generation
+pixel_generation_in_top : pixel_generation
+    port map (
+        clk => clk_100MHz,
+        reset => reset,
+        video_on => w_video_on,
+        x => w_x,
+        y => x_y,
+        rgb => rgb -- does this work without the pipelining
+    );
 
 
-
-process(clk) is
-begin
-    if (rising_edge(clk)) begin
+--process(clk) is
+--begin
+--    if (rising_edge(clk)) begin
         
-    end
-end process;
+--    end
+--end process;
 
 
 
