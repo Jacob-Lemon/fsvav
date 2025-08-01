@@ -23,8 +23,8 @@ architecture Behavioral of top is
 -- signals
 signal w_video_on : std_logic;
 signal w_p_tick : std_logic;
-signal w_x : std_logic;
-signal w_y : std_logic;
+signal w_x : std_logic_vector ( 9 downto 0);
+signal w_y : std_logic_vector (9 downto 0);
 -- signal rgb_reg : std_logic_vector (11 downto 0); -- this may not be necessary if we aren't doing pipelining stuff
 
 
@@ -65,7 +65,7 @@ pixel_generation_in_top : pixel_generation
         reset => reset,
         video_on => w_video_on,
         x => w_x,
-        y => x_y,
+        y => w_y,
         rgb => rgb -- does this work without the pipelining
     );
 
