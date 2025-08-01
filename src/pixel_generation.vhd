@@ -36,7 +36,7 @@ begin
                 -- if video on output color
                 rgb <= blue;
             else
-                -- ptherwise output black when screen is off
+                -- otherwise output black when screen is off
                 rgb <= x"000";
             end if;
 
