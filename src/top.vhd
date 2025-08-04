@@ -23,9 +23,9 @@ architecture Behavioral of top is
     -- signals
     signal clk_25MHz : std_logic := '0'; -- output of clock divider
     signal clock_counter : integer := 0;
-    -- signal w_video_on : std_logic;
-    -- signal w_x : std_logic_vector (9 downto 0);
-    -- signal w_y : std_logic_vector (9 downto 0);
+    signal w_video_on : std_logic;
+    signal w_x : std_logic_vector (9 downto 0);
+    signal w_y : std_logic_vector (9 downto 0);
     -- signal rgb_reg : std_logic_vector (11 downto 0); -- this may not be necessary if we aren't doing pipelining stuff
 
 
@@ -75,11 +75,11 @@ begin -- begin architecture
             clk_25MHz <= '0';
 
         elsif rising_edge(clk_100MHz) then
-            clock_counter <= clock_counter + 1;
-
-            if (clock_counter = 4) then -- binary notation for 4
+            if (clock_counter = 1) then -- every other rising edge which is a 4th
                 clk_25MHz <= not clk_25MHz;
                 clock_counter <= 0;
+            else
+                clock_counter <= clock_counter + 1;
             end if;
 
         end if;
@@ -92,22 +92,22 @@ begin -- begin architecture
         port map (
             clk_25MHz => clk_25MHz,
             reset => reset,
-            video_on => video_on,
+            video_on => w_video_on,
             hsync => hsync,
             vsync => vsync,
-            x => x,
-            y => y
+            x => w_x,
+            y => w_y
         );
 
 
     -- instantiation of pixel_generation
     pixel_generation_in_top : pixel_generation
         port map (
-            clk => clk_100MHz,
+            clk => clk_25MHz,
             reset => reset,
-            video_on => video_on,
-            x => x,
-            y => y,
+            video_on => w_video_on,
+            x => w_x,
+            y => w_y,
             rgb => rgb -- does this work without the pipelining
         );
 
